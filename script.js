@@ -13,8 +13,6 @@ document.getElementById("logInButton").addEventListener("click", function (e) {
 
   const pinNumberValueConverted = parseInt(pinNumberValue);
 
-
-
   if (
     mobileNumberValueConverted === mobileNumber &&
     pinNumberValueConverted === pinNumber
