@@ -30,6 +30,30 @@ function setInnerText(value) {
   const availableBalanceElement = document.getElementById("available-balance");
   availableBalanceElement.innerText = value;
 }
+//function to toggle
+function handleToggle(id) {
+  const forms = document.getElementsByClassName("form");
+  for (const form of forms) {
+    form.style.display = "none";
+  }
+
+  document.getElementById(id).style.display = "block";
+}
+
+//function to toggle buttons
+function handleButtonToggle(id) {
+  const formBtns = document.getElementsByClassName("form-btn");
+  for (const btn of formBtns) {
+    btn.classList.remove("border-[#0874f2]", "bg-[#0874f20d]");
+    btn.classList.add("border-gray-300");
+  }
+
+  document.getElementById(id).classList.remove("border-gray-300");
+
+  document
+    .getElementById(id)
+    .classList.add("border-[#0874f2]", "bg-[#0874f20d]");
+}
 
 // Add Money Feature
 document
@@ -114,15 +138,28 @@ document.getElementById("Withdraw-btn").addEventListener("click", function (e) {
 
 // Add Money
 document.getElementById("add-button").addEventListener("click", function () {
-  document.getElementById("cash-out-parent").style.display = "none";
-
-  document.getElementById("add-money-parent").style.display = "block";
+  handleToggle("add-money-parent");
+  handleButtonToggle("add-button");
 });
 
 // cashout
 document
   .getElementById("cash-out-button")
   .addEventListener("click", function () {
-    document.getElementById("add-money-parent").style.display = "none";
-    document.getElementById("cash-out-parent").style.display = "block";
+    handleToggle("cash-out-parent");
+    handleButtonToggle("cash-out-button");
   });
+
+//Transfer Money
+
+document
+  .getElementById("transfer-button")
+  .addEventListener("click", function () {
+    handleToggle("transfer-money-parent");
+    handleButtonToggle("transfer-button");
+  });
+// Get Bonus
+document.getElementById("bonus-button").addEventListener("click", function () {
+  handleToggle("get-bonus-parent");
+  handleButtonToggle("bonus-button");
+});
