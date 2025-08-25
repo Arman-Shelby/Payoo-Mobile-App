@@ -1,4 +1,5 @@
 const validPin = 1234;
+const transectiondata = []
 // Function to get input values
 
 function getInputValueNumber(id) {
@@ -93,6 +94,14 @@ document
     const totalNewAvailableBalance = amount + availableBalance;
 
     setInnerText(totalNewAvailableBalance);
+
+    const data = {
+      name: "Add Money",
+      date: new Date().toLocaleTimeString()
+    }
+    transectiondata.push(data)
+
+
   });
 
 // Cashout Money feature
@@ -131,7 +140,43 @@ document.getElementById("Withdraw-btn").addEventListener("click", function (e) {
   const totalNewAvailableBalance = availableBalance - amount;
 
   setInnerText(totalNewAvailableBalance);
+
+   const data = {
+      name: "Cash Out",
+      date: new Date().toLocaleTimeString()
+    }
+    transectiondata.push(data)
 });
+
+
+
+document.getElementById("transection-button").addEventListener("click",function(){
+
+  const transectionContainer = document.getElementById("transection-container")
+  transectionContainer.innerText = ""
+ for (const data of transectiondata) {
+  const div = document.createElement("div");
+  div.innerHTML = `
+    <div class="bg-white rounded-xl p-3 flex justify-between items-center mt-5">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-[#f4f5f7]">
+          <img src="./assets/wallet1.png" class="mx-auto" alt="">
+        </div>
+        <div class="ml-3">
+          <h1>${data.name}</h1>
+          <p>${data.date}</p>
+        </div>
+      </div>
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>`
+
+    
+  transectionContainer.appendChild(div);
+}
+
+})
+
+
 
 //--------------------------------------------------
 // toggling feature
@@ -162,4 +207,14 @@ document
 document.getElementById("bonus-button").addEventListener("click", function () {
   handleToggle("get-bonus-parent");
   handleButtonToggle("bonus-button");
+});
+//pay bill
+document.getElementById("bill-button").addEventListener("click", function () {
+  handleToggle("pay-bill-parent");
+  handleButtonToggle("bill-button");
+});
+//transection
+document.getElementById("transection-button").addEventListener("click", function () {
+  handleToggle("transection-parent");
+  handleButtonToggle("transection-button");
 });
